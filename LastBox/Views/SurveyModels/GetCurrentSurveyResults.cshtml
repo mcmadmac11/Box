@@ -1,0 +1,71 @@
+﻿@model LastBox.Models.Subscribe
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "GetCurrentSurveyResults";
+}
+<h1>
+    Survey Results
+</h1>
+@using (Html.BeginForm("SubmitForm", "Subscribe", FormMethod.Post, new { id = "submitForm" }))
+{
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Cost ($)
+            </th>
+            <th>
+                Subscribe
+            </th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>
+                @ViewBag.BoxName
+            </td>
+            <td>
+                @ViewBag.BoxCategory
+            </td>
+            <td>
+                @ViewBag.BoxDescription
+            </td>
+            <td>
+                @ViewBag.BoxCost
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Purchase, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Purchase)
+                            @Html.ValidationMessageFor(model => model.Purchase, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Purchase" class="btn btn-default" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }
+
+    </table>
+}
+
+
